@@ -1,22 +1,7 @@
-var ViewModel = function() {
+var Cat = function() {
     this.clickCount = ko.observable(0),
     this.name = ko.observable('Murrty'),
     this.imgSrc = ko.observable('http://www.wishgoodmorning.org/wp-content/uploads/2016/04/Good-Morning-Cat-Image-wg16158-600x450.jpg'),
-    this.level = ko.computed(function() {
-        if(this.clickCount() < 10) {
-            return 'Infant';
-        } else if (this.clickCount() < 20) {
-            return 'Toddler';
-        } else if (this.clickCount() < 30) {
-            return 'Kid';
-        } else if (this.clickCount() < 40) {
-            return 'Teen';
-        } else if (this.clickCount() < 50) {
-            return 'Adult';
-        } else {
-            return 'Grandma';
-        }
-    },this),
     this.nicknames = ko.observableArray([
         { nickname: 'Marti, malkata smifchica' },
         { nickname: 'Pupelina' },
@@ -24,10 +9,37 @@ var ViewModel = function() {
         { nickname: 'Paldjocheto' },
         { nickname: 'Bazuneka' },
         { nickname: 'Udjek' }
-    ]);{}
+    ]),
+    this.level = ko.computed(function() {
+        if(this.clickCount() < 5) {
+            return 'Kitten';
+        } else if (this.clickCount() < 10) {
+            return 'Cat';
+        } else if (this.clickCount() < 20) {
+            return 'Wild Cat';
+        } else if (this.clickCount() < 30) {
+            return 'Puma';
+        } else if (this.clickCount() < 45) {
+            return 'Cougar';
+        } else if (this.clickCount() < 60) {
+            return 'Leopard';
+        } else if (this.clickCount() < 80) {
+            return 'Tiger';
+        } else if (this.clickCount() < 100) {
+            return 'Lion';
+        } else {
+            return 'Ninja';
+        }
+    },this)
+}
 
+var ViewModel = function() {
+    var self = this;
+    this.currentCat = ko.observable(new Cat()),
+
+    
     this.incrementCounter = function() {
-        this.clickCount(this.clickCount() + 1);
+        self.currentCat().clickCount(self.currentCat().clickCount() + 1);
     };
 }
 
